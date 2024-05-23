@@ -12,7 +12,13 @@ export default function AppLayout() {
                 </div>
             </header>
 
-            <Outlet />
+            <section className="max-w-screen-2xl mx-auto mt-10 p-5">
+                <Outlet />
+            </section>
+
+            <footer className="py-5">
+                <p className="text-center">All Rights Reserved - UpTask {new Date().getFullYear()}</p>
+            </footer>
         </>
     );
 }
