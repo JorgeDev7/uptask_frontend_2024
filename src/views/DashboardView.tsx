@@ -1,7 +1,7 @@
 import { Menu, Transition, MenuButton, MenuItems, MenuItem } from '@headlessui/react';
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
 import { Link } from "react-router-dom";
-import { useQuery, useMutation } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteProject, getProjects } from "@/api/ProjectAPI";
 import { toast } from 'react-toastify';
 
@@ -12,6 +12,8 @@ export default function DashboardView() {
         queryFn: getProjects,
     });
 
+    // Invalidate the queries
+    const queryClient = useQueryClient();
     // Delete project mutation
     const { mutate } = useMutation({
         mutationFn: deleteProject,
@@ -20,6 +22,7 @@ export default function DashboardView() {
         },
         onSuccess: (data) => {
             toast.success(data);
+            queryClient.invalidateQueries({ queryKey: ['projects'] });
         }
     });
 
