@@ -18,6 +18,6 @@ export default function EditTaskData() {
     });
 
     if (data) return (
-        <EditTaskModal />
+        <EditTaskModal data={data} />
     );
 }
