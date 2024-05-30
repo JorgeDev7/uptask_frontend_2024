@@ -5,6 +5,7 @@ import AddTaskModal from "@/components/tasks/AddTaskModal";
 import TaskList from "@/components/tasks/TaskList";
 import EditTaskData from "@/components/tasks/EditTaskData";
 import TaskModalDetails from "@/components/tasks/TaskModalDetails";
+import Spinner from "@/components/spinner/Spinner";
 
 export default function ProjectDetailsView() {
 
@@ -19,7 +20,7 @@ export default function ProjectDetailsView() {
         retry: false
     });
 
-    if (isLoading) return 'Loading...';
+    if (isLoading) return <Spinner />;
     if (isError) return <Navigate to='/404' />;
     if (data) return (
         <>
