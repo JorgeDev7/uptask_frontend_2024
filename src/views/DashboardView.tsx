@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteProject, getProjects } from "@/api/ProjectAPI";
 import { toast } from 'react-toastify';
+import Spinner from '@/components/spinner/Spinner';
 
 export default function DashboardView() {
 
@@ -26,7 +27,7 @@ export default function DashboardView() {
         }
     });
 
-    if (isLoading) return 'Loading...';
+    if (isLoading) return <Spinner />;
 
     if (data) return (
         <>
