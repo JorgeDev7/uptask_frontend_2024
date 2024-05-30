@@ -1,4 +1,4 @@
-import 'index.css';
+import './spinnerStyles.css';
 export default function Spinner() {
   return (
     <div className="sk-chase">
