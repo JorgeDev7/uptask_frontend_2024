@@ -86,6 +86,12 @@ export default function LoginView() {
                     to={'/auth/register'}
                     className="text-center text-gray-300 font-normal"
                 >¿No tienes cuenta? Crea una</Link>
+                <Link
+                    to='/auth/forgot-password'
+                    className="text-center text-gray-300 font-normal"
+                >
+                    ¿Olvidaste tu contraseña? Reestablecer
+                </Link>
             </nav>
         </>
     );
