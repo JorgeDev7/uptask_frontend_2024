@@ -2,7 +2,7 @@ import { PropsWithChildren } from "react";
 
 export default function ErrorMessage({ children }: PropsWithChildren) {
     return (
-        <div className="text-center my-4 bg-red-100 text-red-600 font-bold p-3 uppercase text-sm">
+        <div className="text-red-600 font-bold uppercase text-xs">
             {children}
         </div>
     );
