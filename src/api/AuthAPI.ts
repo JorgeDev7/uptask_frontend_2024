@@ -49,3 +49,15 @@ export async function authenticateUser(formData: UserLoginForm) {
         }
     }
 }
+
+export async function forgotPassword(formData: ForgotPasswordForm) {
+    try {
+        const url = "/auth/forgot-password";
+        const { data } = await api.post<string>(url, formData);
+        return data;
+    } catch (error) {
+        if (isAxiosError(error)) {
+            throw new Error(error.response?.data.error);
+        }
+    }
+}
