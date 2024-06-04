@@ -29,7 +29,9 @@ export default function NewPasswordView() {
                     setToken={setToken}
                     setIsValidToken={setIsValidToken}
                 /> :
-                <NewPasswordForm />}
+                <NewPasswordForm
+                    token={token}
+                />}
         </>
     );
 }
