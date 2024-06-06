@@ -11,7 +11,7 @@ export default function Spinner() {
           <div className="sk-chase-dot"></div>
           <div className="sk-chase-dot"></div>
         </div>
-        <p className='mt-5 font-bold text-indigo-800'>Cargando</p>
+        <p className='mt-5 font-bold text-[#7c3aed]'>Cargando</p>
       </div>
     </>
   );
