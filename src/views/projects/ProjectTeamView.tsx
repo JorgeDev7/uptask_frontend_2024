@@ -20,6 +20,16 @@ export default function ProjectTeamView() {
         retry: false
     });
 
+    const { mutate } = useMutation({
+        mutationFn: removeUserFromProject,
+        onError: (error) => {
+            toast.error(error.message);
+        },
+        onSuccess: (data) => {
+            toast.success(data);
+        }
+    });
+
     if (isLoading) return <Spinner />;
     if (isError) return <Navigate to={'/404'} />;
 
@@ -75,6 +85,7 @@ export default function ProjectTeamView() {
                                                 <button
                                                     type='button'
                                                     className='block px-3 py-1 text-sm leading-6 text-red-500'
+                                                    onClick={() => mutate({ projectId, userId: member._id })}
                                                 >
                                                     Eliminar del Proyecto
                                                 </button>
