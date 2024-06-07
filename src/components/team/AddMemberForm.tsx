@@ -28,6 +28,11 @@ export default function AddMemberForm() {
         mutation.mutate(data);
     };
 
+    const resetData = () => {
+        reset();
+        mutation.reset();
+    };
+
     return (
         <>
 
@@ -80,6 +85,7 @@ export default function AddMemberForm() {
                 <div className="mt-10">
                     <SearchResult
                         user={mutation.data}
+                        reset={resetData}
                     />
                 </div>
             }
