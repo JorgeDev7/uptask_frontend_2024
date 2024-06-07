@@ -1,10 +1,11 @@
-import { getProjectTeam } from "@/api/TeamAPI";
+import { getProjectTeam, removeUserFromProject } from "@/api/TeamAPI";
 import Spinner from "@/components/spinner/Spinner";
 import AddMemberModal from "@/components/team/AddMemberModal";
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from "@headlessui/react";
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 export default function ProjectTeamView() {
