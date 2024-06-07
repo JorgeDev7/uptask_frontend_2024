@@ -15,6 +15,7 @@ export default function SearchResult({ user, reset }: SearchResultProps) {
     const projectId = params.projectId!;
     const { _id, name, email } = user;
 
+    const queryClient = useQueryClient();
     const { mutate } = useMutation({
         mutationFn: addUserToProject,
         onError: (error) => {
@@ -23,6 +24,7 @@ export default function SearchResult({ user, reset }: SearchResultProps) {
         onSuccess: (data) => {
             toast.success(data);
             reset();
+            queryClient.invalidateQueries({ queryKey: ['projectTeam', projectId] });
         }
     });
 
