@@ -20,6 +20,7 @@ export default function ProjectTeamView() {
         retry: false
     });
 
+    const queryClient = useQueryClient();
     const { mutate } = useMutation({
         mutationFn: removeUserFromProject,
         onError: (error) => {
@@ -27,6 +28,7 @@ export default function ProjectTeamView() {
         },
         onSuccess: (data) => {
             toast.success(data);
+            queryClient.invalidateQueries({ queryKey: ['projectTeam', projectId] });
         }
     });
 
