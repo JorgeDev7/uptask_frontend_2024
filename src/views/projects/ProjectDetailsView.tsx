@@ -8,6 +8,7 @@ import Spinner from "@/components/spinner/Spinner";
 import { userAuth } from "@/hooks/useAuth";
 import { getProjectById } from "@/api/ProjectAPI";
 import { isManager } from "@/utils/policies";
+import { useMemo } from "react";
 
 export default function ProjectDetailsView() {
 
@@ -23,6 +24,7 @@ export default function ProjectDetailsView() {
         retry: false
     });
 
+    const canEdit = useMemo(() => data?.manager === user?._id, [data, user]);
     if (isLoading && authLoading) return <Spinner />;
     if (isError) return <Navigate to='/404' />;
     if (data && user) return (
@@ -46,6 +48,7 @@ export default function ProjectDetailsView() {
             )}
             <TaskList
                 tasks={data.tasks}
+                canEdit={canEdit}
             />
             <AddTaskModal />
             <EditTaskData />
