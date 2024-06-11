@@ -7,10 +7,11 @@ import { Task } from "@/types/index";
 import { deleteTask } from "@/api/TaskAPI";
 
 type TaskCardProps = {
-    task: Task;
+    task: Task,
+    canEdit: boolean;
 };
 
-export default function TaskCard({ task }: TaskCardProps) {
+export default function TaskCard({ task, canEdit }: TaskCardProps) {
 
     const navigate = useNavigate();
     const params = useParams();
