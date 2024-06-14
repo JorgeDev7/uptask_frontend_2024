@@ -3,6 +3,10 @@ import { Note } from "@/types/index";
 import { formatDate } from "@/utils/utils";
 import Spinner from "../spinner/Spinner";
 import { useMemo } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteNote } from "@/api/NoteAPI";
+import { toast } from "react-toastify";
+import { useLocation, useParams } from "react-router-dom";
 
 type NoteDetailProps = {
     note: Note;
@@ -11,6 +15,21 @@ type NoteDetailProps = {
 export default function NoteDetail({ note }: NoteDetailProps) {
     const { data, isLoading } = userAuth();
     const canDelete = useMemo(() => data?._id === note.createdBy._id, [data]);
+    const params = useParams();
+    const { search } = useLocation();
+    const queryParams = new URLSearchParams(search);
+    const taskId = queryParams.get('viewTask')!;
+    const projectId = params.projectId!;
+
+    const queryClient = useQueryClient();
+    const { mutate } = useMutation({
+        mutationFn: deleteNote,
+        onError: (error) => toast.error(error.message),
+        onSuccess: (data) => {
+            queryClient.invalidateQueries({ queryKey: ['task', taskId] });
+            toast.success(data);
+        }
+    });
 
     if (isLoading) return <Spinner />;
 
@@ -28,6 +47,7 @@ export default function NoteDetail({ note }: NoteDetailProps) {
                 <button
                     type="button"
                     className="bg-red-400 hover:bg-red-500 p-2 text-xs text-white font-bold transition-colors"
+                    onClick={() => mutate({ projectId, taskId, noteId: note._id })}
                 >Eliminar</button>
             )}
         </div>
