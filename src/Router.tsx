@@ -1,17 +1,17 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AppLayout from './layouts/AppLayout';
+import AuthLayout from './layouts/AuthLayout';
 import DashboardView from './views/DashboardView';
 import CreateProjectView from './views/projects/CreateProjectView';
-import EditProjectView from './views/projects/EditProjectView';
 import ProjectDetailsView from './views/projects/ProjectDetailsView';
-import AuthLayout from './layouts/AuthLayout';
+import EditProjectView from './views/projects/EditProjectView';
+import ProjectTeamView from './views/projects/ProjectTeamView';
 import LoginView from './views/auth/LoginView';
 import RegisterView from './views/auth/RegisterView';
 import ConfirmAccountView from './views/auth/ConfirmAccountView';
 import RequestNewCodeView from './views/auth/RequestNewCodeView';
 import ForgotPasswordView from './views/auth/ForgotPasswordView';
 import NewPasswordView from './views/auth/NewPasswordView';
-import ProjectTeamView from './views/projects/ProjectTeamView';
 
 export default function Router() {
     return (
