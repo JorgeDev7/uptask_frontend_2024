@@ -3,6 +3,7 @@ import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useDraggable } from "@dnd-kit/core";
 import { Task } from "@/types/index";
 import { deleteTask } from "@/api/TaskAPI";
 
@@ -13,6 +14,9 @@ type TaskCardProps = {
 
 export default function TaskCard({ task, canEdit }: TaskCardProps) {
 
+    const { attributes, listeners, setNodeRef, transform } = useDraggable({
+        id: task._id
+    });
     const navigate = useNavigate();
     const params = useParams();
     const projectId = params.projectId!;
@@ -29,9 +33,24 @@ export default function TaskCard({ task, canEdit }: TaskCardProps) {
         }
     });
 
+    const style = transform ? {
+        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+        backgroundColor: "#FFF",
+        padding: "20px",
+        opacity: ".6"
+    } : undefined;
+
     return (
-        <li className="p-5 bg-white border border-slate-300 flex justify-between gap-3">
-            <div className=" min-w-0 flex flex-col gap-y-4">
+        <li
+            className="p-5 bg-white border border-slate-300 flex justify-between gap-3"
+        >
+            <div
+                {...listeners}
+                {...attributes}
+                ref={setNodeRef}
+                style={style}
+                className=" min-w-0 flex flex-col gap-y-4"
+            >
                 <button
                     type="button"
                     className="text-xl font-bold text-slate-600 text-left"
