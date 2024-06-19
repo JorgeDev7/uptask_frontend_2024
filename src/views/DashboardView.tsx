@@ -1,11 +1,11 @@
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, Transition, MenuButton, MenuItems, MenuItem } from '@headlessui/react';
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
-import { Link } from "react-router-dom";
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteProject, getProjects } from "@/api/ProjectAPI";
-import { toast } from 'react-toastify';
+import { useQuery } from '@tanstack/react-query';
 import Spinner from '@/components/spinner/Spinner';
+import DeleteProjectModal from '@/components/projects/DeleteProjectModal';
 import { userAuth } from '@/hooks/useAuth';
+import { getProjects } from "@/api/ProjectAPI";
 import { isManager } from '@/utils/policies';
 
 export default function DashboardView() {
