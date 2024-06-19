@@ -10,6 +10,8 @@ import { isManager } from '@/utils/policies';
 
 export default function DashboardView() {
 
+    const location = useLocation();
+    const navigate = useNavigate();
     const { data: user, isLoading: authLoading } = userAuth();
     const { data, isLoading } = useQuery({
         queryKey: ['projects'],
@@ -100,7 +102,9 @@ export default function DashboardView() {
                                                         <button
                                                             type='button'
                                                             className='block px-3 py-1 text-sm leading-6 text-red-500'
-                                                            onClick={() => mutate(project._id)}
+                                                            onClick={() =>
+                                                                navigate(location.pathname + `?deleteProject=${project._id}`)
+                                                            }
                                                         >
                                                             Eliminar Proyecto
                                                         </button>
