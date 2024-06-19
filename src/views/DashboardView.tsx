@@ -18,20 +18,6 @@ export default function DashboardView() {
         queryFn: getProjects,
     });
 
-    // Invalidate the queries
-    const queryClient = useQueryClient();
-    // Delete project mutation
-    const { mutate } = useMutation({
-        mutationFn: deleteProject,
-        onError: (error) => {
-            toast.error(error.message);
-        },
-        onSuccess: (data) => {
-            toast.success(data);
-            queryClient.invalidateQueries({ queryKey: ['projects'] });
-        }
-    });
-
     if (isLoading && authLoading) return <Spinner />;
 
     if (data && user) return (
