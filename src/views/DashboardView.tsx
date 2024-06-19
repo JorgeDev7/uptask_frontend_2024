@@ -114,6 +114,8 @@ export default function DashboardView() {
                     >Crear Proyecto</Link>
                 </p>
             )}
+
+            <DeleteProjectModal />
         </>
     );
 }
