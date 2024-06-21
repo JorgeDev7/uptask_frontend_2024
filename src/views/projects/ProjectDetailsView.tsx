@@ -6,7 +6,7 @@ import EditTaskData from "@/components/tasks/EditTaskData";
 import TaskModalDetails from "@/components/tasks/TaskModalDetails";
 import Spinner from "@/components/spinner/Spinner";
 import { userAuth } from "@/hooks/useAuth";
-import { getProjectById } from "@/api/ProjectAPI";
+import { getFullProject } from "@/api/ProjectAPI";
 import { isManager } from "@/utils/policies";
 import { useMemo } from "react";
 
@@ -20,7 +20,7 @@ export default function ProjectDetailsView() {
     const { data: user, isLoading: authLoading } = userAuth();
     const { data, isLoading, isError } = useQuery({
         queryKey: ['project', projectId],
-        queryFn: () => getProjectById(projectId),
+        queryFn: () => getFullProject(projectId),
         retry: false
     });
 
