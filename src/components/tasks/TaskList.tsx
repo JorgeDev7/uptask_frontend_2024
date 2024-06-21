@@ -2,19 +2,19 @@ import { DndContext, DragEndEvent } from '@dnd-kit/core';
 import TaskCard from "./TaskCard";
 import DropTask from "./DropTask";
 import { statusTranslations } from "@/locales/es";
-import { Task, TaskStatus } from "@/types/index";
+import { Project, TaskProject, TaskStatus } from "@/types/index";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { updateStatus } from '@/api/TaskAPI';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 
 type TaskListProps = {
-    tasks: Task[],
+    tasks: TaskProject[],
     canEdit: boolean;
 };
 
 type GroupedTasks = {
-    [key: string]: Task[];
+    [key: string]: TaskProject[];
 };
 
 const initialStatusGroups: GroupedTasks = {
