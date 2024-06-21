@@ -13,7 +13,7 @@ export default function SearchResult({ user, reset }: SearchResultProps) {
 
     const params = useParams();
     const projectId = params.projectId!;
-    const { _id, name, email } = user;
+    const { _id, name } = user;
 
     const queryClient = useQueryClient();
     const { mutate } = useMutation({
